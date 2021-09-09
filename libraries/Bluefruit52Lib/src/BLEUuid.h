@@ -86,6 +86,8 @@ class BLEUuid
 extern const uint8_t UUID128_CHR_ADAFRUIT_MEASUREMENT_PERIOD[16];
 extern const uint8_t UUID128_CHR_ADAFRUIT_VERSION[16];
 
+#define UUID128_GAMEPAD 0x90069492800A4E6894E7238670D89FD8
+
 /*------------------------------------------------------------------*/
 /* Service UUID
  * https://www.bluetooth.com/specifications/gatt/services

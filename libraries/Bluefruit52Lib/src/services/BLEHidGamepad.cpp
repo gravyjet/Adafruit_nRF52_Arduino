@@ -51,6 +51,7 @@ err_t BLEHidGamepad::begin(void)
   setReportLen(input_len, NULL, NULL);
   enableKeyboard(false);
   enableMouse(false);
+  enableGamepad(true);
   setReportMap(hid_gamepad_report_descriptor, sizeof(hid_gamepad_report_descriptor));
 
   VERIFY_STATUS( BLEHidGeneric::begin() );
@@ -67,7 +68,13 @@ err_t BLEHidGamepad::begin(void)
 
 bool BLEHidGamepad::report(uint16_t conn_hdl, hid_gamepad_report_t const* report)
 {
-  return inputReport(conn_hdl, REPORT_ID_GAMEPAD, report, sizeof(hid_gamepad_report_t));
+  if (isBootMode() )
+  {
+    return gamepadReport(conn_hdl, report, sizeof(hid_gamepad_report_t));
+  }else
+  {
+    return inputReport(conn_hdl, REPORT_ID_GAMEPAD, report, sizeof(hid_gamepad_report_t));
+  }
 }
 
 bool BLEHidGamepad::reportButtons(uint16_t conn_hdl, uint32_t button_mask)
